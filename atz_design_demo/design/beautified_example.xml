@@ -1,0 +1,103 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+
+        <ScoreFunction name="myscore" weights="beta_nov16_cst.wts" symmetric="1">
+            <Reweight scoretype="coordinate_constraint" weight="10.0" />
+            Reweight scoretype="chain_break" weight="0.0" />
+        </ScoreFunction>
+    
+    </SCOREFXNS>
+    <RESIDUE_SELECTORS>
+
+         <Index name="loop" resnums="%%loop_range%%" />
+         <Not name="not_loop" selector="loop" />
+
+         <Index name="chA" resnums="%%chDom_start%%-%%chDom_end%%" />
+         <Not name="not_chA" selector="chA" />
+         <Neighborhood name="near_chA" selector="chA" distance="6.0" />
+         <And name="design_nearA" selectors="not_chA,near_chA" />
+        
+         <Index name="chB" resnums="%%Dom_start%%-%%Dom_end%%" />
+         <Not name="not_chB" selector="chB" />
+         <Neighborhood name="near_chB" selector="chB" distance="6.0" />
+         <And name="design_nearB" selectors="not_chB,near_chB" />
+         <Or name="Sh2_and_loops" selectors="loop,chB" />
+        
+         <Index name="chC" resnums="%%chPep_start%%-%%chPep_end%%" />
+         <Not name="not_chC" selector="chC" />
+         <Neighborhood name="near_chC" selector="chC" distance="6.0" />
+         <And name="design_nearC" selectors="not_chC,near_chC,not_loop" />
+         
+        
+         <Or name="designable_residues" selectors="loop,design_nearA,design_nearB,design_nearC" />
+         <Not name="not_designable" selector="designable_residues" />
+
+         <Neighborhood name="near_design" selector="designable_residues" distance="6.0" />
+         <Not name="not_repackable" selector="near_design" />
+
+         <And name="repack_outskirts" selectors="not_designable,near_design,not_loop" />
+        
+        
+         <And name="silence_B_C" selectors="chC,near_chB,not_loop" />
+         <Or name="repackable_residues" selectors="silence_B_C,design_nearC,repack_outskirts" />
+
+    </RESIDUE_SELECTORS>
+
+    <TASKOPERATIONS>
+
+        <InitializeFromCommandline name="init"/>
+        <IncludeCurrent name="keep_curr"/>
+        <ReadResfile name="resfile" filename="%%resfile%%" />
+
+        <OperateOnResidueSubset name="no_des_rep" selector="designable_residues" >
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        
+        <OperateOnResidueSubset name="csts_for_A_and_C" selector="Sh2_and_loops" >
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        
+        <OperateOnResidueSubset name="no_des" selector="not_designable" >
+            <RestrictToRepackingRLT/>
+        </OperateOnResidueSubset>
+
+        <OperateOnResidueSubset name="restrict_most" selector="not_repackable" >
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        <OperateOnResidueSubset name="repack_shell" selector="repackable_residues" >
+            <RestrictToRepackingRLT/>
+        </OperateOnResidueSubset>
+
+    </TASKOPERATIONS>
+
+    <FILTERS>
+
+        <ClashCheck name="clashcheckfilter" cutoff="0" clash_dist="3.0" verbose="true" write2pdb="true"/>
+        <ScoreType name="total_score" scorefxn="myscore" score_type="total_score" threshold="50000" />
+
+    </FILTERS>
+    <MOVERS>
+        
+        <SetupForSymmetry   name="setup_symm" definition="%%symfile%%"/>
+        <AtomCoordinateCstMover name="poseCST" coord_dev="0.2" bounded="true" bound_width="0.1" sidechain="false" native="false" task_operations="csts_for_A_and_C" />
+        <SymPackRotamersMover name="repack1" scorefxn="myscore" task_operations="init,restrict_most,repack_shell,keep_curr,resfile"/>
+        <SymMinMover name="min1" scorefxn="myscore" type="lbfgs_armijo_nonmonotone" tolerance="0.01" bb="1" chi="1" jump="0"/>
+        <ParsedProtocol name="ramp_rep_cycle">
+            <Add mover="repack1"/>
+            <Add mover="min1"/>
+        </ParsedProtocol>
+        <GenericMonteCarlo name="genericMC" mover_name="ramp_rep_cycle" scorefxn_name="myscore" temperature="0.8" trials="4"/> 
+
+    </MOVERS>
+    <APPLY_TO_POSE>
+    </APPLY_TO_POSE>
+    <PROTOCOLS>
+
+        <Add mover="setup_symm"/>
+        <Add mover="poseCST"/>
+        <Add mover="genericMC"/>
+        Add filter="clashcheckfilter" />
+        <Add filter="total_score" />
+
+    </PROTOCOLS>
+</ROSETTASCRIPTS>

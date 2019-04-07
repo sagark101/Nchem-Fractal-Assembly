@@ -1,0 +1,76 @@
+CST::BEGIN
+   TEMPLATE::  ATOM_MAP: 1 atom_name: C1 C2 C3
+   TEMPLATE::  ATOM_MAP: 1 residue3: FYN
+
+   TEMPLATE::  ATOM_MAP: 2 atom_name: C CA N
+   TEMPLATE::  ATOM_MAP: 2 is_backbone
+   TEMPLATE::  ATOM_MAP: 2 residue3: ALA
+
+   CONSTRAINT::  distanceAB: 2.4645     0.07 10.0   0       1
+   CONSTRAINT::     angle_A: 117.036  42.641 10.0   360.0   2
+   CONSTRAINT::     angle_B: 147.275   3.313 10.0   360.0   2
+   CONSTRAINT::   torsion_A: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::   torsion_B: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::  torsion_AB: 0.00      180.0 10.0   360.0   18
+   ALGORITHM_INFO:: match
+     IGNORE_UPSTREAM_PROTON_CHI
+   ALGORITHM_INFO::END
+CST::END
+
+CST::BEGIN
+   TEMPLATE::  ATOM_MAP: 1 atom_name: C1 C2 C3
+   TEMPLATE::  ATOM_MAP: 1 residue3: FYN
+
+   TEMPLATE::  ATOM_MAP: 2 atom_name: C CA N
+   TEMPLATE::  ATOM_MAP: 2 is_backbone
+   TEMPLATE::  ATOM_MAP: 2 residue3: VAL
+
+   CONSTRAINT::  distanceAB: 5.1147    1.036 10.0   0       1
+   CONSTRAINT::     angle_A: 111.774   53.71 10.0   360.0   2
+   CONSTRAINT::     angle_B: 134.685  25.928 10.0   360.0   2
+   CONSTRAINT::   torsion_A: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::   torsion_B: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::  torsion_AB: 0.00      180.0 10.0   360.0   18
+   ALGORITHM_INFO:: match
+     IGNORE_UPSTREAM_PROTON_CHI
+   ALGORITHM_INFO::END
+CST::END
+
+
+CST::BEGIN
+   TEMPLATE::  ATOM_MAP: 1 atom_name: C117 C116 C115 
+   TEMPLATE::  ATOM_MAP: 1 residue3: FYN
+
+   TEMPLATE::  ATOM_MAP: 2 atom_name: N CA C
+   TEMPLATE::  ATOM_MAP: 2 is_backbone
+   TEMPLATE::  ATOM_MAP: 2 residue3: THR
+
+   CONSTRAINT::  distanceAB: 2.4227     0.07 10.0   0       1
+   CONSTRAINT::     angle_A: 115.403  39.194 10.0   360.0   2
+   CONSTRAINT::     angle_B: 155.75    3.623 10.0   360.0   2
+   CONSTRAINT::   torsion_A: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::   torsion_B: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::  torsion_AB: 0.00      180.0 10.0   360.0   18
+   ALGORITHM_INFO:: match
+     IGNORE_UPSTREAM_PROTON_CHI
+   ALGORITHM_INFO::END
+CST::END
+
+CST::BEGIN
+   TEMPLATE::  ATOM_MAP: 1 atom_name: C117 C116 C115 
+   TEMPLATE::  ATOM_MAP: 1 residue3: FYN
+
+   TEMPLATE::  ATOM_MAP: 2 atom_name: N CA C
+   TEMPLATE::  ATOM_MAP: 2 is_backbone
+   TEMPLATE::  ATOM_MAP: 2 residue3: LEU
+
+   CONSTRAINT::  distanceAB: 5.042     1.058 10.0   0       1
+   CONSTRAINT::     angle_A: 108.871  49.355 10.0   360.0   2
+   CONSTRAINT::     angle_B: 136.633  13.609 10.0   360.0   2
+   CONSTRAINT::   torsion_A: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::   torsion_B: 0.00      180.0 10.0   360.0   18
+   CONSTRAINT::  torsion_AB: 0.00      180.0 10.0   360.0   18
+   ALGORITHM_INFO:: match
+     IGNORE_UPSTREAM_PROTON_CHI
+   ALGORITHM_INFO::END
+CST::END

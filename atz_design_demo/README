@@ -1,0 +1,15 @@
+This folder contains three folders labeled:
+
+   design
+   genKic
+   matching
+
+Each folder contains a run script to be executed from commandline. The script can be run directly:
+
+./run*.sh (pdb input)
+
+The flagged files are included in each individual directory including symmetry files, matcher position files, and additional Rosetta flag commands to replicate the computation performed for the attached manuscript. Some files have not been updated to work with the most recent version of Rosetta and would require XML "beautifying" (documented in Rosetta) to run. We have included a beautified version of the design xml in the design folder as reference for how the XML format in Rosetta has changed since running the original scripts. We also did not want to adjust or tamper with the original sccripts used to collect data and make designs. The pdb codes used for this study were 4v1x (AtzA) and 2qt3 (AtzC) and can be downloaded from the PDB.
+
+To execute the code the user must have a compatible version of Rosetta and a corresponding Database downloaded. Some reworking of absolute directories in the scripts may be necessary. We are happy to provide additional assitance or information upon request.
+
+A bash script (make_one_png.sh) was used to generate the 2D images (projections) of the fractal assemblies and is provided within the main directory.

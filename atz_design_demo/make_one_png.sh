@@ -1,0 +1,1 @@
+../../../Applications/MacPyMOL.app/Contents/MacOS/MacPyMOL -q -c $1'.pdb' -d "as spheres;set sphere_scale, 12;bg_color white;color black, N. CA;set all_states, 1;orient;set fog, 0;set specular, 0" -g './png_out/'$1'.png'

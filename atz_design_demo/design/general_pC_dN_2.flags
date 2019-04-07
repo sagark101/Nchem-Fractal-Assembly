@@ -1,0 +1,12 @@
+-database ~/Rosetta/main/database/ 
+-parser:protocol symFastRelax.xml  
+-ex1 
+-ex2 
+-score:weights talaris_2013_cst 
+-extrachi_cutoff 0 
+-use_input_sc 
+-run:preserve_header 
+-output_virtual 
+-ignore_zero_occupancy false 
+-out:nstruct 1
+-extra_res_fa PTR.params

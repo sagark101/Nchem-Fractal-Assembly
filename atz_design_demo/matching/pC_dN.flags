@@ -1,0 +1,4 @@
+-extra_res_fa FYN.fa.params
+-match:lig_name FYN
+-match:geometric_constraint_file zero_residue_addition_NR_pC_dN.cst
+-match:scaffold_active_site_residues_for_geomcsts pC_dN.pos

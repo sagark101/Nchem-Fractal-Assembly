@@ -1,0 +1,1 @@
+python dn_dn_layerer.py --static "4V1X_coarse.pdb" --mobile "2QT3_coarse.pdb" --trans-bin 134.00 --rot-bin 54.75 --null1 0.0 --null2 0.0 --layers 15 --paired-bins --clash-mag 22.0 --a-frac 1.0 --b-frac 1.0 --file-name $1
